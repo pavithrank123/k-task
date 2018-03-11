@@ -61,6 +61,52 @@ module.exports.sendemailotp=function (req,res){
         });
     }
 };
+
+module.exports.sendemailotp2=function (req,res){
+    if(req!=undefined&&req.data.hasOwnProperty("email"))
+    {
+        emailotp=Math.random(36).toString().slice(2,8);
+        var emaildata={
+            "otp":emailotp,
+            "email":req.data.email
+        };
+        const mailOptions = {
+            from: 'kuttank97@gmail.com', // sender address
+            to: emaildata.email, // list of receivers
+            subject: 'OTP Verification @Kurukshetra 2k19', // Subject line
+            template:'emailotp',
+            context:{
+                "otp":emailotp
+            }
+        };
+        var resdata={
+            message:""
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+            if(err)
+                console.log(err);
+            else
+            {
+                console.log(info);
+                Usermodel.updateemailotp(emaildata,function (response) {
+                    if(response==="success")
+                    {
+                        console.log("working");
+                        res.status(200).json(resdata);
+                    }
+                    else
+                    {
+
+                        console.log('error');
+                        resdata.message="Server Error in Sending OTP";
+                        res.status(401).json(resdata);
+                    }
+                });
+            }
+        });
+    }
+};
+
 module.exports.sendemailid=function (req,res){
     if(req!=undefined&&req.hasOwnProperty("email"))
     {

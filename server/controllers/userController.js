@@ -1,6 +1,5 @@
 var speakeasy = require('speakeasy');
 var QRCode = require('qrcode');
-var fs = require("fs");
 var Usermodel=require('../model/model.js');
 var sendotp=require('./otpcontroller.js');
 var resmsg = {
@@ -43,7 +42,7 @@ module.exports.registerController=function(req,res){
                                             "email":email
                                         }
                                     };
-                                    sendotp.sendemailotp(otpdata,res);
+                                    sendotp.sendemailotp2(otpdata,res);
                                 }
                                 else
                                 {

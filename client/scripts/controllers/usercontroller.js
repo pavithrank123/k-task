@@ -67,9 +67,11 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                                 toaster.pop('success', 'Name', 'Success');
                                 ctrl.emailotp=true;
                             }
-                            else if(res.status===301)
-                            {
-                                toaster.pop('error',response.data.message);
+                            else if(res.status===301) {
+                                toaster.pop('error',"Already Registered");
+                            }
+                            else if(res.status===302) {
+                                toaster.pop('error', res.data.message);
                             }
                             else
                             {
