@@ -12,6 +12,30 @@
                         visible:false
                     }
                 }
+        },
+        {
+            name: 'Login',
+            state:
+                {
+                    url:'/login',
+                    templateUrl: '../views/login.html',
+                    data : {
+                        text:"Login",
+                        visible:false
+                    }
+                }
+        },
+        {
+            name: 'Display',
+            state:
+                {
+                    url:'/image',
+                    templateUrl: '../views/displayimage.html',
+                    data : {
+                        text:"Login",
+                        visible:false
+                    }
+                }
         }
 
     ];
@@ -21,8 +45,9 @@
         'ngAnimate',
         'toaster'
         ])
-        .config(function($stateProvider,$urlRouterProvider){
+        .config(function($stateProvider,$locationProvider,$httpProvider,$urlRouterProvider){
             $urlRouterProvider.otherwise('/');
+            $httpProvider.defaults.withCredentials = true;
             angular.forEach(states,function(state){
                 $stateProvider.state(state.name,state.state);
             });

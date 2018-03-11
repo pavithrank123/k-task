@@ -1,34 +1,60 @@
 <div ng-controller="usercontroller as ctrl" ng-init="ctrl.init()">
     <div class="wrapper">
-        <form class="login">
+
+        <div ng-if="ctrl.imagesection">
+            <div class="title">Display</div>
+            <img src="{{ctrl.responseimage}}" alt="LOADING"/>
+            <button ng-click="ctrl.showimage()">
+                <i class="spinner"></i>
+                <span class="state">Show</span>
+            </button>
+
+        </div>
+        <div ng-if="ctrl.changepass&&!ctrl.verifyemail">
+            <input type="text" placeholder="Enter the email" ng-model="ctrl.emailrec"/>
+            <i class="fa fa-key"></i>
+            <button ng-click="ctrl.forgotpass()">
+                <i class="spinner"></i>
+                <span class="state">Submit</span>
+            </button>
+        </div>
+        <div ng-if="ctrl.verifyemail" class="login">
+            <input type="text" placeholder="Enter the OTP" ng-model="ctrl.fotp"/>
+            <i class="fa fa-key"></i>
+            <input type="pass" placeholder="Enter NEW PASSWORD" ng-model="ctrl.fpass"/>
+            <i class="fa fa-key"></i>
+            <button ng-click="ctrl.checkotp()">
+                <i class="spinner"></i>
+                <span class="state">Submit</span>
+            </button>
+        </div>
+
+        <div ng-if="ctrl.show2fauth">
+            <input type="text" placeholder="Enter the OTP on Your Google authenticator" ng-model="ctrl.gotp" autofocus/>
+            <i class="fa fa-key"></i>
+            <button ng-click="ctrl.googlecheck()">
+                <i class="spinner"></i>
+                <span class="state">Verify</span>
+            </button>
+        </div>
+        <form ng-if="!ctrl.imagesection" class="login">
             <div ng-if="!ctrl.emailotp">
-                <div class="title">Register</div>
+                <div class="title">Email</div>
                 <input type="text" placeholder="Email" ng-model="ctrl.email" autofocus/>
                 <i class="fa fa-user"></i>
-                <input type="text" placeholder="mobile" ng-model="ctrl.mobile" />
-                <i class="fa fa-mobile"></i>
                 <input type="password" placeholder="Password" ng-model="ctrl.password"/>
                 <i class="fa fa-key"></i>
-                <input type="password" placeholder="Confirm Password" ng-model="ctrl.cpassword"/>
-                <i class="fa fa-key"></i>
-                <span><div>Have an Account? <a href="" ng-click="ctrl.changestate('Login')">Login here</a> </div></span>
-                <button ng-click="ctrl.register()">
+                <span><div>Did you forgot password ?? <a href="" ng-click="ctrl.changepassword()">Forgot Password</a></div></span>
+                <button ng-click="ctrl.login()">
                     <i class="spinner"></i>
-                    <span class="state">Register</span>
+                    <span class="state">Login</span>
                 </button>
             </div>
             <div ng-if="ctrl.emailotp">
                 <input type="text" placeholder="OTP" ng-model="ctrl.emailsotp"/>
                 <i class="fa fa-key"></i>
-                <button ng-click="ctrl.registeration()">
-                    <span class="state">Register</span>
-                </button>
-            </div>
-            <div ng-if="ctrl.emailotp">
-                <input type="text" placeholder="OTP" ng-model="ctrl.emailsotp"/>
-                <i class="fa fa-key"></i>
-                <button ng-click="ctrl.registeration()">
-                    <span class="state">Register</span>
+                <button ng-click="ctrl.loginpage()">
+                    <span class="state">Login</span>
                 </button>
             </div>
         </form>

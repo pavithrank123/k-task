@@ -17,14 +17,13 @@ transporter.use('compile', mailerhbs({
 }));
 
 module.exports.sendemailotp=function (req,res){
-    if(req.data!=undefined&&req.data.hasOwnProperty("email"))
+    if(req!=undefined&&req.hasOwnProperty("email"))
     {
         emailotp=Math.random(36).toString().slice(2,8);
-        emaildata={
+        var emaildata={
             "otp":emailotp,
-            "email":req.data.email
+            "email":req.email
         };
-
         const mailOptions = {
             from: 'kuttank97@gmail.com', // sender address
             to: emaildata.email, // list of receivers
@@ -52,6 +51,8 @@ module.exports.sendemailotp=function (req,res){
                     }
                     else
                     {
+
+                        console.log('error');
                         resdata.message="Server Error in Sending OTP";
                         res.status(401).json(resdata);
                     }
@@ -60,5 +61,33 @@ module.exports.sendemailotp=function (req,res){
         });
     }
 };
-
-
+module.exports.sendemailid=function (req,res){
+    if(req!=undefined&&req.hasOwnProperty("email"))
+    {
+        var emaildata={
+            "otp":"http://localhost:8080/changepass/userid="+req.userid,
+            "email":req.email
+        };
+        const mailOptions = {
+            from: 'kuttank97@gmail.com', // sender address
+            to: emaildata.email, // list of receivers
+            subject: 'OTP Verification @Kurukshetra 2k19', // Subject line
+            template:'emailotp',
+            context:{
+                "otp":emaildata.otp
+            }
+        };
+        var resdata={
+            message:""
+        };
+        transporter.sendMail(mailOptions, function (err, info) {
+            if(err)
+                console.log(err);
+            else
+            {
+                console.log(info);
+                res.sendStatus(200);
+            }
+        });
+    }
+};

@@ -1,37 +1,11 @@
 <div ng-controller="usercontroller as ctrl" ng-init="ctrl.init()">
-    <div class="wrapper">
-        <form class="login">
-            <div ng-if="!ctrl.emailotp">
-                <div class="title">Register</div>
-                <input type="text" placeholder="Email" ng-model="ctrl.email" autofocus/>
-                <i class="fa fa-user"></i>
-                <input type="text" placeholder="mobile" ng-model="ctrl.mobile" />
-                <i class="fa fa-mobile"></i>
-                <input type="password" placeholder="Password" ng-model="ctrl.password"/>
-                <i class="fa fa-key"></i>
-                <input type="password" placeholder="Confirm Password" ng-model="ctrl.cpassword"/>
-                <i class="fa fa-key"></i>
-                <span><div>Have an Account? <a href="" ng-click="ctrl.changestate('Login')">Login here</a> </div></span>
-                <button ng-click="ctrl.register()">
-                    <i class="spinner"></i>
-                    <span class="state">Register</span>
-                </button>
-            </div>
-            <div ng-if="ctrl.emailotp">
-                <input type="text" placeholder="OTP" ng-model="ctrl.emailsotp"/>
-                <i class="fa fa-key"></i>
-                <button ng-click="ctrl.registeration()">
-                    <span class="state">Register</span>
-                </button>
-            </div>
-            <div ng-if="ctrl.emailotp">
-                <input type="text" placeholder="OTP" ng-model="ctrl.emailsotp"/>
-                <i class="fa fa-key"></i>
-                <button ng-click="ctrl.registeration()">
-                    <span class="state">Register</span>
-                </button>
-            </div>
-        </form>
+    <div class="wrapper" >
+        <div class="title">Display</div>
+        <img src="{{ctrl.responseimage}}" alt="LOADING"/>
+        <button ng-click="ctrl.showimage()">
+            <i class="spinner"></i>
+            <span class="state">Show</span>
+        </button>
     </div>
     <style type="text/css">
         body {
@@ -176,7 +150,6 @@
         .login:not(.loading) button:focus {
             border-bottom-width: 4px;
         }
-
         footer {
             display: block;
             padding-top: 50px;
