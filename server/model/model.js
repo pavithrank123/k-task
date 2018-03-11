@@ -272,7 +272,7 @@ module.exports.verifyregister=function(data,callback)
             }
             else
             {
-                if(results.length>=0)
+                if(results)
                 {
                     callback(parseInt(results[0].isverified));
                 }

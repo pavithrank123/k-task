@@ -65,11 +65,13 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                             };
                         MainService.register(data).then(function (res) {
                             if (res.status === 200) {
-                                console.log("Api call success")
+                                console.log("Api call success");
+                                toaster.pop('success', 'Name', 'Success');
                                 ctrl.emailotp=true;
                             }
                             else
                             {
+                                toaster.pop('error', 'ERROR');
                                 console.log("Check the internet connection");
                             }
 
@@ -105,9 +107,11 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                 MainService.verifyotp(data).then(function (res) {
                     if (res.status === 200) {
                         ctrl.emailotp=true;
+                        toaster.pop('error', 'Name', 'Success');
                     }
                     else
                     {
+                        toaster.pop('error', 'Error');
                         console.log("Check the internet connection");
                     }
                 });
