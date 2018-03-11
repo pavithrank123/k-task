@@ -173,7 +173,6 @@ module.exports.loginController=function (req,res) {
                     "email":email,
                     "pass":password
                 };
-
                 Usermodel.checkUsername(obj,function(data){
                     if(data==="Autherror")
                     {
@@ -190,11 +189,11 @@ module.exports.loginController=function (req,res) {
                                     if (result)
                                     {
                                         res.sendStatus(200);
-
                                     }
                                     else
                                     {
-                                        var otpdata={
+                                        var otpdata=
+                                        {
                                             "data":{
                                                 "email":email
                                             }

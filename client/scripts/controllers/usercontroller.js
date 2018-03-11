@@ -149,7 +149,7 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                         console.log(response);
                         if(response.status===200)
                         {
-                            if(response.data.message='SENT')
+                            if(response.data.message=='SENT')
                             {
                                 toaster.pop('error',"Email not verified yet!!");
                                 toaster.pop('error',"OTP Sent to your email");
