@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 
 app.use('/', index);
 
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 80));
 
 app.listen(app.get('port'), function(){
     console.log('Server started on port '+app.get('port'));

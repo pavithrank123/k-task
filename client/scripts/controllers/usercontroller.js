@@ -111,7 +111,7 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                 MainService.verifyotp(data).then(function (res) {
                     if (res.status === 200) {
                         ctrl.emailotp=true;
-                        toaster.pop('error', 'Name', 'Success');
+                        toaster.pop('success', 'Success!! you Can Login now');
                     }
                     else
                     {

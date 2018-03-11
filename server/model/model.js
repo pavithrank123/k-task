@@ -272,13 +272,13 @@ module.exports.verifyregister=function(data,callback)
             }
             else
             {
-                if(results)
+                if(results.length>0)
                 {
                     callback(parseInt(results[0].isverified));
                 }
                 else
                 {
-                    callback("NO");
+                    callback(false);
                 }
             }
         });
@@ -288,6 +288,7 @@ module.exports.verifyregister=function(data,callback)
         console.log(err);
     }
 };
+
 
 module.exports.verifymobile=function(data,callback)
 {
