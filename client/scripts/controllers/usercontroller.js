@@ -49,11 +49,10 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                 toaster.pop('error', 'Email', 'Enter a valid email');
             }
             else {
-                if (ctrl.mobile.length != 10 || !isNumber(ctrl.mobile)) {
+                if (ctrl.mobile.length!=10 || !isNumber(ctrl.mobile)) {
                     toaster.pop('error', 'Mobile Number', 'Enter a valid mobile number');
                 }
                 else {
-
                     if (ctrl.password === ctrl.cpassword) {
                         var data =
                             {
@@ -65,9 +64,12 @@ function usercontroller($state,toaster,MainService,$cookies,$timeout,$window) {
                             };
                         MainService.register(data).then(function (res) {
                             if (res.status === 200) {
-                                console.log("Api call success");
                                 toaster.pop('success', 'Name', 'Success');
                                 ctrl.emailotp=true;
+                            }
+                            else if(res.status===301)
+                            {
+                                toaster.pop('error',response.data.message);
                             }
                             else
                             {
