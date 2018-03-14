@@ -208,7 +208,7 @@ module.exports.loginController=function (req,res) {
                                         "email":email
                                     }
                                 };
-                                sendotp.sendemailotp(otpdata,res);
+                                sendotp.sendemailotp2(otpdata,res);
                             }
                         });
                     }

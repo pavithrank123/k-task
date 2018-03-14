@@ -13,7 +13,7 @@ var allowedOrigins = ['http://localhost',
     'https://www.techofes.org.in',
     'http://techofes.org.in',
     'https://techofes.org.in',
-    'http://auth.techofes.org.in',
+    'http://35.200.151.5',
     'https://auth.techofes.org.in',
     'http://localhost:8081',
     'http://192.168.0.103:8081'
